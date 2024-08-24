@@ -22,14 +22,13 @@ public class OrderService {
         if (user.getBudget() < totalCost) {
             throw new InsufficientFundsException("User has insufficient funds.");
         }
-        // Update user budget
         user.setBudget(user.getBudget() - totalCost);
-        // Update product stock
+        
         for (Product product : cart.getProducts().keySet()) {
             int quantity = cart.getProducts().get(product);
             product.setStock(product.getStock() - quantity);
         }
-        // Clear the cart
+
         cart.clear();
     }
 
